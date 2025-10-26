@@ -1,6 +1,11 @@
-#CREATE DATABASE starstruck_game;
+#DROP DATABASE starstruck_game;
+CREATE DATABASE starstruck_game;
 
 USE starstruck_game;
+
+CREATE USER IF NOT EXISTS 'flaskuser'@'localhost' IDENTIFIED BY 'flaskpass';
+GRANT ALL PRIVILEGES ON starstruck_game.* TO 'flaskuser'@'localhost';
+FLUSH PRIVILEGES;
 
 CREATE TABLE players (
     player_id INT AUTO_INCREMENT PRIMARY KEY,

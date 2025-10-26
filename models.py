@@ -9,11 +9,18 @@ class Player(db.Model):
     pronouns = db.Column(db.String(20))
     appearance = db.Column(db.String(255))
 
+class Character(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    description = db.Column(db.Text)
+    image_url = db.Column(db.String(255))  # Path to their portrait or sprite
+
 class Dialogue(db.Model):
     __tablename__ = 'dialogue'
     dialogue_id = db.Column(db.Integer, primary_key=True)
     character_name = db.Column(db.String(100))
     dialogue_text = db.Column(db.Text)
+    character_id = db.Column(db.Integer, db.ForeignKey('character.id'))
 
 class Choice(db.Model):
     __tablename__ = 'choice'

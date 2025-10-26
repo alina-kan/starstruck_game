@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Starstruck Dating Simulator</title>
+  <link rel="stylesheet" href="/static/css/style.css" />
+</head>
+<body>
+  <div id="game-container">
+    <img id="character-image" src="/static/images/orion.png" alt="Character" />
+    <div id="dialogue-box">
+      <h2 id="character-name"></h2>
+      <p id="dialogue-text"></p>
+      <div id="choices"></div>
+    </div>
+  </div>
+
+  <script>
+    let dialogueIndex = 0;
+    let dialogues = [];
+
+    async function loadDialogue() {
+      const response = await fetch('http://127.0.0.1:5000/dialogues');
+      dialogues = await response.json();
+      showDialogue(dialogueIndex);
+    }
+
+    function showDialogue(index) {
+      const d = dialogues[index];
+      if (!d) return;
+
+      document.getElementById('character-name').textContent = d.character?.name || 'Narrator';
+      document.getElementById('dialogue-text').textContent = d.text;
+      document.getElementById('character-image').src = d.character?.image_url ? d.character.image_url : '';
+
+      // Show choices (if any)
+      const choicesContainer = document.getElementById('choices');
+      choicesContainer.innerHTML = '';
+
+      if (d.choices && d.choices.length > 0) {
+        d.choices.forEach(choice => {
+          const btn = document.createElement('button');
+          btn.textContent = choice.text;
+          btn.onclick = () => {
+            dialogueIndex = dialogues.findIndex(dl => dl.id === choice.next_dialogue_id);
+            showDialogue(dialogueIndex);
+          };
+          choicesContainer.appendChild(btn);
+        });
+      } else {
+        // Continue to next dialogue
+        const nextBtn = document.createElement('button');
+        nextBtn.textContent = 'Next';
+        nextBtn.onclick = () => showDialogue(index + 1);
+        choicesContainer.appendChild(nextBtn);
+      }
+    }
+
+    loadDialogue();
+  </script>
+</body>
+</html>
