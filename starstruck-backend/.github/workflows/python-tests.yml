@@ -1,37 +1,39 @@
-name: Backend Test
+name: Python Tests
 
+# Trigger workflow on push or pull request to any branch
 on:
   push:
-    branches: [main]
+    branches:
+      - '**'
   pull_request:
-    branches: [main]
+    branches:
+      - '**'
+  workflow_dispatch:  # allows manual trigger from Actions tab
 
 jobs:
-  test-backend:
+  test:
+    name: Run Pytest
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: [3.10]
+
     steps:
-    - uses: actions/checkout@v3
+      # 1. Checkout repo
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: ${{ matrix.python-version }}
+      # 2. Set up Python
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.11
 
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
-        pip install pytest coverage
+      # 3. Install dependencies
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pytest pytest-cov
 
-    - name: Run tests
-      run: |
-        pytest --cov=app tests/
-
-    - name: Upload coverage
-      uses: actions/upload-artifact@v3
-      with:
-        name: coverage-report
-        path: htmlcov/
+      # 4. Run tests
+      - name: Run tests
+        run: |
+          pytest --maxfail=5 --disable-warnings -q --tb=short
