@@ -1,0 +1,150 @@
+/* GameEngine.module.css */
+
+.gameWrapper {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: black;
+}
+
+/* background image (covers) */
+.bgImage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+/* sprite centered bottom */
+.sprite {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  max-height: 78vh;
+  z-index: 10;
+}
+
+/* transition overlays */
+.fadeOverlay, .whiteflash {
+  position: absolute;
+  inset: 0;
+  z-index: 40;
+  pointer-events: none;
+}
+
+.fadeOverlay {
+  background: black;
+  animation: fadeOut 0.6s ease forwards;
+}
+
+.whiteflash {
+  background: white;
+  animation: fadeOut 0.4s ease forwards;
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+/* TEXTBOX using your image */
+.textboxContainer {
+  position: absolute;
+  bottom: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 92%;
+  max-width: 1200px;
+  height: 220px; /* adjust to your textbox art */
+  z-index: 50;
+  cursor: pointer;
+  background: rgba(0, 0, 0, 0.6); /* semi-transparent black */
+  border-radius: 12px; /* optional, for smooth edges */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* speaker at top */
+  padding: 20px 32px; /* spacing inside the box */
+  box-sizing: border-box;
+}
+
+.textboxBg {
+  position: absolute;
+  inset: 0; /* top:0; left:0; right:0; bottom:0; */
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  z-index: 51;
+  pointer-events: none;
+}
+
+/* Speaker box area — adjust coordinates to match your art */
+.textboxSpeaker {
+  position: absolute;
+  top: 20px;
+  left: 64px;
+  color: #fff;
+  font-weight: 700;
+  font-size: 20px;
+  z-index: 52;
+  text-shadow: 0 0 6px black;
+}
+
+/* Text area inside textbox — adjust margins to fit inside art area */
+.textboxText {
+  position: relative; /* remove absolute */
+  padding: 56px 64px 20px 64px; /* top, right, bottom, left */
+  color: #fff;
+  font-size: 20px;
+  line-height: 1.45;
+  z-index: 52;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  height: calc(100% - 76px); /* optional, ensures it stays inside */
+}
+
+
+/* Buttons & modal reuse (adapted from your gallery.css style) */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 200;
+}
+
+.modalContent {
+  background: black;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  max-height: 85vh;
+  max-width: 85vw;
+}
+
+/* Buttons (reused look) */
+.mainButtons {
+  margin: 8px;
+  padding: 10px 18px;
+  background-color: rgba(17,8,74,0.1);
+  color: rgb(244,185,66);
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.closeBtn {
+  margin-top: 12px;
+  padding: 8px 14px;
+  background: rgba(100,100,100,0.1);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}

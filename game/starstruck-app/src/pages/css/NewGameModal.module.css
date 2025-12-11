@@ -1,0 +1,140 @@
+.bodyBackground {
+    background-color: black;
+    background-image: url('../../assets/main/main_background.PNG');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+    /*padding: 20px; *
+
+    animation: fadeIn 1.7s ease-in-out forwards; */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.imageLogo {
+    padding: inherit;
+    margin: 1% auto 0% auto;
+    align-items: center;
+    display: block;
+    width: 22rem;
+    /*animation: fadeOut 1.7s ease-in-out forwards;*/
+}
+
+.h2Title {
+    padding: inherit;
+    margin: 1% auto 1% auto;
+    align-items: center;
+    display: flex;
+    width: 22rem;
+    color: white;
+    text-align: center;
+    justify-content: center;
+}
+
+.fadeOut {
+    opacity: 0;
+}
+
+.transitionGroup {
+    animation: fadeIn 1.3s ease-in forwards;
+    transition: opacity 0.8s ease-out;
+    opacity: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+@keyframes fadeInOut {
+    0% { opacity: 0; }
+    15% { opacity: 1; }
+    85% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+.input {
+    height: 20%;
+    width: 50%;
+    margin: auto;
+    align-items: center;
+    font-size: large;
+    display: block;
+    font-family: "Hiragino Mincho ProN", 'Times New Roman', Times, serif;
+    font-weight: bold;
+    font-size: x-large;
+    background-color: rgba(13, 4, 68, 0.532);
+    border: none;
+    color: rgb(244, 185, 66);
+    border-radius: 10px;
+    text-align: center;
+}
+
+.mainButtons {
+    margin: 2% auto 18% auto;
+    padding: 10px 20px 10px 20px;
+    text-align: center;
+    align-items: center;
+    font-family: "Hiragino Mincho ProN", 'Times New Roman', Times, serif;
+    font-weight: bold;
+    font-size: x-large;
+    background-color: rgba(17, 8, 74, 0.251);
+    border: none;
+    color: rgb(244, 185, 66);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.mainButtons:hover {
+    color: rgb(255, 226, 168);
+    background-color: rgba(24, 18, 95, 0.3);
+}
+
+.fadeOut {
+    animation: fadeOut 1s ease-out forwards;
+}
+
+.mainForm {
+    background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.109), black, rgba(0, 0, 0, 0.109));
+    color: rgb(255, 182, 14);
+    font-family: "Hiragino Mincho ProN", 'Times New Roman', Times, serif;
+    font-weight: bold;
+}
+
+.pronouns{
+    height: 20%;
+    width: 50%;
+    margin: 3% auto;
+    align-items: center;
+    font-size: larg; 
+    display: block;
+    font-family: "Hiragino Mincho ProN", 'Times New Roman', Times, serif;
+    font-weight: bold;
+    font-size: x-large;
+    background-color: rgba(13, 4, 68, 0.532);
+    border: none;
+    color: rgb(244, 185, 66);
+    border-radius: 10px;
+    text-align: center;
+}

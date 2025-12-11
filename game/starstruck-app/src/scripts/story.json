@@ -1,0 +1,105 @@
+{
+    "1": [
+        {
+            "id": 1,
+            "bg": "mc_intro",
+            "transition": "fade",
+            "speaker": "",
+            "text": "{name} watches the scenery outside the window as the shuttle ambles along the road towards {possessive} new home for the next two years."
+        },
+        {
+            "id": 2,
+            "bg": "mc_intro",
+            "transition": "none",
+            "speaker": "",
+            "text": "Trees bleed into pristine white buildings and clear blue skies– it’s a nice day out."
+        },
+        {
+            "id": 3,
+            "bg": "mc_intro",
+            "transition": "none",
+            "speaker": "Shuttle Conductor",
+            "text": "Stopping soon at Astraea University. Next stop, Astraea University."
+        },
+        {
+            "id": 4,
+            "bg": "mc_intro",
+            "transition": "none",
+            "speaker": "{name}",
+            "text": "Crap. That’s my stop. I didn’t realize it’d be such a short trip."
+        },
+        {
+            "id": 5,
+            "bg": "mc_intro",
+            "transition": "none",
+            "speaker": "{name}",
+            "text": "Everything here is so sparkly– it’s hard to believe that this university is hundreds of years old when some of the buildings look brand new. It’s almost … unsettling."
+        },
+        {
+            "id": 6,
+            "bg": "mc_intro",
+            "transition": "none",
+            "speaker": "{name}",
+            "text": "I was here last week to talk to auntie … but .. I don’t really recognize anything. Maybe it’s just too new to me."
+        },
+        {
+            "id": 7,
+            "bg": "mc_intro",
+            "transition": "none",
+            "speaker": "{name}",
+            "text": "After everything, after... Mom. I need this."
+        },
+        {
+            "id": 8,
+            "bg": "mc_intro",
+            "transition": "none",
+            "speaker": "Shuttle Conductor",
+            "text": "Now arriving at Astraea University. Arriving, Astraea University."
+        },
+        {
+            "id": 9,
+            "bg": "mc_intro",
+            "transition": "none",
+            "speaker": "{name}",
+            "text": "Oops. That’s me. Hopefully Jay won’t be hard to find. He said he’d meet me at the shuttle stop, but there’re more than a few people here … maybe he’ll find me before I find him? "
+        },
+        {
+            "id": 10,
+            "bg": "mc_intro",
+            "transition": "none",
+            "speaker": "{name}",
+            "text": "He said green sweater and blue jeans … ah, that might be him over there?"
+        }
+    ],
+    "2":[
+        {
+            "id": 11,
+            "bg": "off_the_bus",
+            "transition": "fade",
+            "speaker": "",
+            "text": "{name} steps off the bus into the sunlight. The shuttle terminal is moderately populated, with people hopping off other shuttles or waiting for others."
+        },
+        {
+            "id": 12,
+            "bg": "off_the_bus",
+            "transition": "",
+            "speaker": "",
+            "text": "As {subject} walks towards who {subject} thinks might be Jay, an attractive white-haired student about {object} age bumps roughly into {object}."
+        },
+        {
+            "id": 13,
+            "bg": "off_the_bus",
+            "transition": "",
+            "speaker": "{name}",
+            "text": "Ouch– hey! Sorry, I didn’t mean to bump into y–"
+        },
+        {
+            "id": 14,
+            "bg": "off_the_bus",
+            "transition": "fade",
+            "sprite": "theron_annoyed",
+            "speaker": "Unknown",
+            "text": "Tch. Hey. Your eyes for decoration? Watch yourself. "
+        }
+    ]
+}

@@ -1,0 +1,155 @@
+.bodyBackground {
+    background-color: black;
+    background-image: url('../../assets/main/main_background.PNG');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+    
+    /*padding: 20px; *
+
+    animation: fadeIn 1.7s ease-in-out forwards; */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.imageLogo {
+    padding: inherit;
+    margin: 1% auto 0% auto;
+    align-items: center;
+    display: block;
+    width: 22rem;
+    /*animation: fadeOut 1.7s ease-in-out forwards;*/
+}
+
+.fadeOut {
+    opacity: 0;
+}
+
+.transitionGroup {
+    animation: fadeIn 1.3s ease-in forwards;
+    transition: opacity 0.8s ease-out;
+    opacity: 1;
+}
+
+.galleryPhotos {
+    background-image: linear-gradient(180deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.573), black, rgba(0, 0, 0, 0.573), rgba(0, 0, 0, 0));
+
+    position: fixed;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    place-content: center;
+}
+
+.photo {
+    padding: auto;
+    margin: 8% 2% 10% 2%;
+    align-items: center;
+    place-content: center;
+    display: flex;
+    width: 18rem;
+}
+
+.controllerSpace {
+    background-image: linear-gradient(180deg, rgba(0, 0, 0, 0), black);
+    color: rgb(255, 182, 14);
+    font-family: "Hiragino Mincho ProN", 'Times New Roman', Times, serif;
+    font-weight: bold;
+
+    /*
+    position: absolute;
+    top: 90%;
+    width: 100%;
+    height: 25%;
+    align-items: center; */
+
+    position: fixed;
+    display: flex;
+    bottom: 0%;
+    width: 100%;
+    align-items: center;
+    place-content: center;
+}
+
+.mainButtons {
+    margin: 2% 5% 2% 5%;
+    padding: 10px 20px 10px 20px;
+    text-align: center;
+    position: relative;
+    font-family: "Hiragino Mincho ProN", 'Times New Roman', Times, serif;
+    font-weight: bold;
+    font-size: x-large;
+    background-color: rgba(17, 8, 74, 0.1);
+    border: none;
+    color: rgb(244, 185, 66);
+    border-radius: 10px;
+}
+
+.mainButtons:hover {
+    color: rgb(255, 226, 168);
+    background-color: rgba(24, 18, 95, 0.3);
+}
+
+.fadeOut {
+    animation: fadeOut 1s ease-out forwards;
+}
+
+.lockedPopup {
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0,0,0,0.75);
+    padding: 12px 18px;
+    border-radius: 8px;
+    color: white;
+    font-size: 1rem;
+    z-index: 3000;
+    animation: fadeInOut 2s ease forwards;
+}
+
+@keyframes fadeInOut {
+    0% { opacity: 0; }
+    15% { opacity: 1; }
+    85% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+.tableDisplay { 
+    width: 60%;
+    border-collapse: collapse; 
+    color: white;
+    font-size: 1.2rem;
+    margin: 10px auto;
+    padding: 10px auto;
+    /*background-image: linear-gradient(180deg, black, rgba(0, 0, 0, 0));*/
+    background-color: black;
+}
+
+.tableRow { 
+    border-bottom: 2px solid white
+}

@@ -1,0 +1,197 @@
+.bodyBackground {
+    background-color: black;
+    background-image: url('../../assets/main/main_background.PNG');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+    /*padding: 20px; *
+
+    animation: fadeIn 1.7s ease-in-out forwards; */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.imageLogo {
+    padding: inherit;
+    margin: 1% auto 0% auto;
+    align-items: center;
+    display: block;
+    width: 22rem;
+    /*animation: fadeOut 1.7s ease-in-out forwards;*/
+}
+
+.fadeOut {
+    opacity: 0;
+}
+
+.transitionGroup {
+    animation: fadeIn 1.3s ease-in forwards;
+    transition: opacity 0.8s ease-out;
+    opacity: 1;
+}
+
+.controllerSpace {
+    background-image: linear-gradient(180deg, rgba(0, 0, 0, 0), black);
+    color: rgb(255, 182, 14);
+    font-family: "Hiragino Mincho ProN", 'Times New Roman', Times, serif;
+    font-weight: bold;
+
+    /*
+    position: absolute;
+    top: 90%;
+    width: 100%;
+    height: 25%;
+    align-items: center; */
+
+    position: fixed;
+    display: flex;
+    bottom: 0%;
+    width: 100%;
+    align-items: center;
+    place-content: center;
+}
+
+.mainButtons {
+    margin: 2% 5% 2% 5%;
+    padding: 10px 20px 10px 20px;
+    text-align: center;
+    position: relative;
+    font-family: "Hiragino Mincho ProN", 'Times New Roman', Times, serif;
+    font-weight: bold;
+    font-size: x-large;
+    background-color: rgba(17, 8, 74, 0.1);
+    border: none;
+    color: rgb(244, 185, 66);
+    border-radius: 10px;
+
+}
+
+.mainButtons:hover {
+    color: rgb(255, 226, 168);
+    background-color: rgba(24, 18, 95, 0.3);
+}
+
+.fadeOut {
+    animation: fadeOut 1s ease-out forwards;
+}
+
+/*.bodyBackground {
+    background-color: black;
+    background-image: url('../../assets/main/main_background.PNG');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+    /*padding: 20px; *
+
+    animation: fadeIn 1.7s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.imageLogo {
+    padding: inherit;
+    margin: 1% auto 0% auto;
+    align-items: center;
+    display: block;
+    width: 27%;
+
+    animation: fadeIn 1.7s ease-in forwards;
+
+    transition: opacity 0.8s ease-out;
+    opacity: 1;
+    /*animation: fadeOut 1.7s ease-in-out forwards;*
+}
+
+.fadeOut {
+    opacity: 0;
+}
+
+.controllerSpace {
+    background-image: linear-gradient(180deg, rgba(0, 0, 0, 0), black);
+    color: rgb(255, 182, 14);
+    font-family: "Hiragino Mincho ProN", 'Times New Roman', Times, serif;
+    font-weight: bold;
+}
+
+.contentWrapper {
+  animation-fill-mode: forwards;
+}
+
+.fadeOut {
+  animation: fadeOutUI 0.8s ease forwards;
+}
+
+@keyframes fadeOutUI {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
+.fadeIn {
+  animation: fadeInUI 1s ease forwards;
+}
+
+@keyframes fadeInUI {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.fadeOut {
+  animation: fadeOutUI 1s ease forwards;
+}
+
+@keyframes fadeOutUI {
+  from { opacity: 1; }
+  to { opacity: 0; }
+} */
