@@ -3,14 +3,11 @@ from database import get_db, init_db
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app, origins="http://localhost:5173")  # allow your frontend
+CORS(app, origins="http://localhost:5173")
 
-# Initialize DB once on startup
 init_db()
 
-# -----------------------------------------------------
-# GALLERY UNLOCKS API
-# -----------------------------------------------------
+# gallery unlocks table
 @app.get("/api/gallery")
 def get_gallery_unlocks():
     conn = get_db()
@@ -35,14 +32,11 @@ def unlock_cg():
     return jsonify({"status": "ok"})
 
 
-# -----------------------------------------------------
-# SAVE SYSTEM API
-# -----------------------------------------------------
-
-# CREATE or UPDATE SAVE SLOT
+# Saves table functions
 @app.post("/api/save")
 def save_progress():
     data = request.json
+    #lets us know what's actually being saved here
     print("SAVE PAYLOAD:", data)
 
     user_id = data["user_id"]
@@ -51,28 +45,29 @@ def save_progress():
     line_id = data["line_id"]
     nickname = data.get("nickname")
     pronouns = data.get("pronouns")
+    affection = data.get("affection")
 
     conn = get_db()
     cur = conn.cursor()
 
-    # Use INSERT OR REPLACE for SQLite
     cur.execute("""
-        INSERT INTO saves (user_id, save_slot, scene_id, line_id, nickname, pronouns, save_time)
-        VALUES (?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)
+        INSERT INTO saves (user_id, save_slot, scene_id, line_id, nickname, pronouns, save_time, affection)
+        VALUES (?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP, ?)
         ON CONFLICT(user_id, save_slot) DO UPDATE SET
             scene_id = excluded.scene_id,
             line_id = excluded.line_id,
             nickname = excluded.nickname,
             pronouns = excluded.pronouns,
-            save_time = CURRENT_TIMESTAMP
-    """, (user_id, save_slot, scene_id, line_id, nickname, pronouns))
+            save_time = CURRENT_TIMESTAMP,
+            affection = excluded.affection
+    """, (user_id, save_slot, scene_id, line_id, nickname, pronouns, affection))
 
     conn.commit()
     conn.close()
     return jsonify({"status": "saved"})
 
 
-# LOAD MOST RECENT SAVE (Continue button)
+# load save from Continue menu
 @app.get("/api/continue/<int:user_id>")
 def continue_game(user_id):
     conn = get_db()
@@ -91,14 +86,14 @@ def continue_game(user_id):
     return jsonify(dict(row))
 
 
-# LIST ALL SAVE SLOTS (for a Load Game menu later)
+# load all saves for continue
 @app.get("/api/saves")
 def get_saves():
     conn = get_db()
     cursor = conn.cursor()
 
     cursor.execute("""
-        SELECT id, user_id, save_slot, scene_id, line_id, nickname, pronouns, save_time
+        SELECT id, user_id, save_slot, scene_id, line_id, nickname, pronouns, save_time, affection
         FROM saves
         ORDER BY user_id ASC, save_slot ASC
     """)
@@ -115,11 +110,13 @@ def get_saves():
             "line_id": row["line_id"],
             "nickname": row["nickname"],
             "pronouns": row["pronouns"],
-            "save_time": row["save_time"]
+            "save_time": row["save_time"],
+            "affection": row["affection"]
         })
 
     return jsonify(saves)
 
+#lets us delete save files 
 @app.delete("/api/saves/<int:user_id>/<int:slot>")
 def delete_save(user_id, slot):
     conn = get_db()
@@ -129,10 +126,6 @@ def delete_save(user_id, slot):
     """, (user_id, slot))
     conn.commit()
     return {"message": "deleted"}
-
-# -----------------------------------------------------
-# END OF FILE
-# -----------------------------------------------------
 
 if __name__ == "__main__":
     app.run(debug=True)

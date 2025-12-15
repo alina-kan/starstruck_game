@@ -68,38 +68,286 @@
             "bg": "mc_intro",
             "transition": "none",
             "speaker": "{name}",
-            "text": "He said green sweater and blue jeans … ah, that might be him over there?"
+            "text": "He said green sweater and blue jeans … ah, that might be him over there?",
+            "nextScene": 2
         }
     ],
     "2":[
         {
             "id": 11,
-            "bg": "off_the_bus",
+            "bg": "bus_exit",
             "transition": "fade",
             "speaker": "",
             "text": "{name} steps off the bus into the sunlight. The shuttle terminal is moderately populated, with people hopping off other shuttles or waiting for others."
         },
         {
             "id": 12,
-            "bg": "off_the_bus",
+            "bg": "bus_exit",
             "transition": "",
             "speaker": "",
             "text": "As {subject} walks towards who {subject} thinks might be Jay, an attractive white-haired student about {object} age bumps roughly into {object}."
         },
         {
             "id": 13,
-            "bg": "off_the_bus",
+            "bg": "bus_exit",
             "transition": "",
             "speaker": "{name}",
             "text": "Ouch– hey! Sorry, I didn’t mean to bump into y–"
         },
         {
             "id": 14,
-            "bg": "off_the_bus",
-            "transition": "fade",
+            "bg": "bus_exit",
+            "transition": "",
             "sprite": "theron_annoyed",
             "speaker": "Unknown",
-            "text": "Tch. Hey. Your eyes for decoration? Watch yourself. "
+            "text": "Tch. Hey. Your eyes for decoration? Watch yourself. ",
+            "choices": [
+                { "label": "Ignore him.", "goto": 15 },
+                { "label": "Stand up for yourself.", "goto": 16 },
+                { "label": "Apologize.", "goto": 21 }
+            ]
+        }, 
+        {
+            "id": 15,
+            "bg": "bus_exit",
+            "transition": "",
+            "sprite": "",
+            "speaker": "{name}",
+            "text": "Wow, rude... He was … kinda gorgeous, though? Ugh.",
+            "goto": 24
+        },
+        {
+            "id": 16,
+            "bg": "bus_exit",
+            "transition": "",
+            "sprite": "theron_annoyed",
+            "speaker": "{name}",
+            "text": "Hey. Don’t be rude. You walked into me just as much as I walked into you."
+        },
+        {
+            "id": 17,
+            "bg": "bus_exit",
+            "transition": "",
+            "sprite": "theron_annoyed2",
+            "speaker": "Unknown",
+            "text": "Are you serious? Do you even know who I am?."
+        },
+        {
+            "id": 18,
+            "bg": "bus_exit",
+            "transition": "",
+            "sprite": "theron_annoyed2",
+            "speaker": "{name}",
+            "text": "I know you’re an asshole. That right?"
+        },
+        {
+            "id": 19,
+            "bg": "bus_exit",
+            "transition": "",
+            "sprite": "",
+            "speaker": "Narrator",
+            "text": "The stranger scoffs and walks off, leaving {name} on their own once more."
+        },
+        {
+            "id": 20,
+            "bg": "bus_exit",
+            "transition": "",
+            "sprite": "",
+            "speaker": "{name}",
+            "text": "Wow, hopefully I never see him again.",
+            "goto": 24
+        },
+        {
+            "id": 21,
+            "bg": "bus_exit",
+            "transition": "",
+            "sprite": "theron_annoyed",
+            "speaker": "{name}",
+            "text": "My bad. Is your stuff alright?"
+        },
+        {
+            "id": 22,
+            "bg": "bus_exit",
+            "transition": "",
+            "sprite": "theron_annoyed2",
+            "speaker": "Unknown",
+            "text": "It’s none of your business."
+        },
+        {
+            "id": 23,
+            "bg": "bus_exit",
+            "transition": "",
+            "sprite": "",
+            "speaker": "{name}",
+            "text": "Huh? How rude!",
+            "goto": 24
+        },
+        {
+            "id": 24,
+            "bg": "bus_exit",
+            "transition": "",
+            "sprite": "",
+            "speaker": "Narrator",
+            "text": "Shaking off the strange interaction, Roxanne continues walking over to Jay. He’s standing in the shade of a pretty tree, tapping his foot as he waits. He’s tall, and friendly-looking."
+        },
+        {
+            "id": 25,
+            "bg": "bus_exit",
+            "transition": "",
+            "sprite": "jay_wink",
+            "speaker": "Jay",
+            "text": "Hi! Roxanne? I don’t see any other pretty girls wearing white and blue around here, so I must be right."
+        },
+        {
+            "id": 26,
+            "bg": "bus_exit",
+            "transition": "",
+            "sprite": "jay_happy",
+            "speaker": "Jay",
+            "text": "I’ll be your tour guide on this fine afternoon.",
+            "choices": [
+                { "label": "Show your discomfort.", "goto": 27, "affection": 0},
+                { "label": "Return his playfulness.", "goto": 30, "affection": 2},
+                { "label": "Ignore his first comment.", "goto": 33, "affection": 1}
+            ]
+        },
+        {
+            "id": 27,
+            "bg": "bus_exit",
+            "transition": "",
+            "sprite": "jay_happy",
+            "speaker": "{name}",
+            "text": "Um... Yeah! Sure. That’s me. You’re ... Jay?"
+        },
+        {
+            "id": 28,
+            "bg": "bus_exit",
+            "transition": "",
+            "sprite": "jay_sad",
+            "speaker": "Jay",
+            "text": "Sorry, didn’t mean to make it weird or anything. Just thought I’d lighten the mood a little."
+        },
+        {
+            "id": 29,
+            "bg": "bus_exit",
+            "transition": "",
+            "sprite": "jay_idle",
+            "speaker": "Jay",
+            "text": "We can start the tour right away, if you’re ready!  It’s not a big campus, but there’re a lot of important things to see. ",
+            "goto": 37
+        },
+        {
+            "id": 30,
+            "bg": "bus_exit",
+            "transition": "",
+            "sprite": "jay_idle",
+            "speaker": "{name}",
+            "text": "That’s me! And I don’t see any other cute guys in green here, so you must be Jay."
+        },
+        {
+            "id": 31,
+            "bg": "bus_exit",
+            "transition": "",
+            "sprite": "jay_happy",
+            "speaker": "Jay",
+            "text": "Hah! Gosh, no need for flattery. Ready to get going?"
+        },
+        {
+            "id": 32,
+            "bg": "bus_exit",
+            "transition": "",
+            "sprite": "jay_idle",
+            "speaker": "Jay",
+            "text": "It’s not a big campus, but there’re a lot of important things to see.",
+            "goto": 37
+        },
+        {
+            "id": 33,
+            "bg": "bus_exit",
+            "transition": "",
+            "sprite": "jay_idle",
+            "speaker": "{name}",
+            "text": "I am, yeah."
+        },
+        {
+            "id": 34,
+            "bg": "bus_exit",
+            "transition": "",
+            "sprite": "jay_idle",
+            "speaker": "Jay",
+            "text": "Neat. Wanna get going now? Or do you need a minute?"
+        },
+        {
+            "id": 35,
+            "bg": "bus_exit",
+            "transition": "",
+            "sprite": "jay_idle",
+            "speaker": "Jay",
+            "text": "It’s not a big campus, but there’re a lot of important things to see."
+        },
+        {
+            "id": 36,
+            "bg": "bus_exit",
+            "transition": "",
+            "sprite": "jay_idle",
+            "speaker": "Jay",
+            "text": "It’s not a big campus, but there’re a lot of important things to see.",
+            "goto": 37
+        },
+        {
+            "id": 37,
+            "bg": "bus_exit",
+            "transition": "",
+            "sprite": "jay_idle",
+            "speaker": "{name}",
+            "text": "We can go ahead. Also, I bumped into a guy earlier, and... he was kind of rude."
+        },
+        {
+            "id": 38,
+            "bg": "bus_exit",
+            "transition": "",
+            "sprite": "jay_idle",
+            "speaker": "{name}",
+            "text": "Is that normal around here? Should I … watch out for that? Or ..?"
+        },
+        {
+            "id": 39,
+            "bg": "bus_exit",
+            "transition": "",
+            "sprite": "jay_sad",
+            "speaker": "Jay",
+            "text": "Oh, ouch. Maybe he just was havin’ a bad day. Not everyone here’s like that though, promise."
+        },
+        {
+            "id": 40,
+            "bg": "bus_exit",
+            "transition": "",
+            "sprite": "jay_idle",
+            "speaker": "Jay",
+            "text": " You’ll find your people one way or another. In my experience, people here are pretty friendly!"
+        },
+        {
+            "id": 41,
+            "bg": "bus_exit",
+            "transition": "",
+            "sprite": "jay_happy",
+            "speaker": "Jay",
+            "text": "Come on, we have a lot to look at, people to meet!"
         }
+    ],
+    "3":[
+        {
+            "id": 42,
+            "bg": "cg/markos_intro",
+            "transition": "fade",
+            "sprite": "",
+            "speaker": "Beautiful Stranger",
+            "text": "Ah, are you alright?",
+            "ending": {
+                "key": "markos_intro",
+                "cg": "markos_intro"
+            }
+        }
+
     ]
 }

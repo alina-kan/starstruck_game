@@ -7,6 +7,7 @@ CREATE TABLE IF NOT EXISTS saves (
     nickname TEXT,
     pronouns TEXT,
     save_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    affection INTEGER DEFAULT 0,
     UNIQUE(user_id, save_slot)
 );
 

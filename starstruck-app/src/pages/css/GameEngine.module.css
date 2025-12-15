@@ -22,10 +22,31 @@
 .sprite {
   position: absolute;
   bottom: 0;
+  zoom: 130%;
   left: 50%;
   transform: translateX(-50%);
   max-height: 78vh;
   z-index: 10;
+  opacity: 0;
+}
+
+.spriteFadeIn {
+  animation: fadeIn 1s ease forwards;
+}
+
+/* Fade OUT */
+.spriteFadeOut {
+  animation: fadeOut 1s ease forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to   { opacity: 0; }
 }
 
 /* transition overlays */
@@ -38,12 +59,12 @@
 
 .fadeOverlay {
   background: black;
-  animation: fadeOut 0.6s ease forwards;
+  animation: fadeOut 1s ease forwards;
 }
 
 .whiteflash {
   background: white;
-  animation: fadeOut 0.4s ease forwards;
+  animation: fadeOut 1s ease forwards;
 }
 
 @keyframes fadeOut {
@@ -106,6 +127,12 @@
   height: calc(100% - 76px); /* optional, ensures it stays inside */
 }
 
+.choiceButtons {
+  background-color: rgba(0,0,0,0.6);
+  width: 200px;
+  height: 50px;
+  color: white;
+}
 
 /* Buttons & modal reuse (adapted from your gallery.css style) */
 .modalOverlay {
@@ -137,6 +164,8 @@
   border-radius: 8px;
   font-weight: bold;
   cursor: pointer;
+  font-family: "Hiragino Mincho ProN", 'Times New Roman', Times, serif;
+  font-size: large;
 }
 
 .closeBtn {
@@ -147,4 +176,33 @@
   border: none;
   border-radius: 6px;
   cursor: pointer;
+}
+
+.choiceContainer {
+  position: absolute;
+  bottom: 40%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  z-index: 10;
+}
+
+.choiceButton {
+  padding: 12px 28px;
+  font-size: 1.2rem;
+  font-family: "Hiragino Mincho ProN", serif;
+  background: rgba(17, 8, 74, 0.2);
+  color: rgb(244, 185, 66);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.choiceButton:hover {
+  background: rgba(120, 114, 189, 0.3);
+  transform: scale(1.03);
 }

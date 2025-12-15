@@ -48,7 +48,8 @@ export default function SaveFiles({ mode, newGameData, startGame, goToStart }) {
       scene_id: 1,
       line_id: firstLineId,
       nickname: newGameData?.nickname ?? 'Player',
-      pronouns: newGameData?.pronouns ?? 'they/them'
+      pronouns: newGameData?.pronouns ?? 'they/them',
+      affection: newGameData?.affection ?? 0
     };
   };
 
@@ -72,7 +73,8 @@ export default function SaveFiles({ mode, newGameData, startGame, goToStart }) {
                 scene_id: saveData.scene_id,
                 line_id: saveData.line_id,
                 nickname: saveData.nickname,
-                pronouns: saveData.pronouns
+                pronouns: saveData.pronouns,
+                affection: saveData.affection
             })
         });
 
@@ -80,14 +82,14 @@ export default function SaveFiles({ mode, newGameData, startGame, goToStart }) {
         setSaves(prev => ({ ...prev, [slot]: { ...saveData, save_slot: slot, save_time: new Date().toISOString() } }));
 
         // Start game at the correct spot
-        startGame(saveData.scene_id, saveData.line_id, saveData.nickname, saveData.pronouns);
+        startGame(saveData.scene_id, saveData.line_id, saveData.nickname, saveData.pronouns, saveData.affection);
       } catch (err) {
         console.error(err);
       }
     } else {
       // continue: load existing save
       if (!existing) return;
-      startGame(existing.scene_id, existing.line_id, existing.nickname, existing.pronouns);
+      startGame(existing.scene_id, existing.line_id, existing.nickname, existing.pronouns, existing.affection);
     }
   };
 
@@ -165,169 +167,3 @@ export default function SaveFiles({ mode, newGameData, startGame, goToStart }) {
     </div>
   );
 }
-
-
-/*import styles from './css/SaveFiles.module.css';
-import logo from '../assets/main/logo.PNG'
-import { useState, useEffect } from 'react'
-
-export default function SaveFiles({ mode, newGameData, startGame, goToStart }) {
-    const [fadeLogo, setFadeLogo] = useState(true);
-    const [saves, setSaves] = useState({ 1: null, 2: null, 3: null });
-    const USER_ID = 1; 
-
-    function handleLaunch() {
-        setFadeLogo(false);    
-        setTimeout(() => {
-            goToStart();    
-        }, 1300); 
-    }
-
-    useEffect(() => {
-        fetch("http://127.0.0.1:5000/api/saves")
-            .then(res => res.json())
-            .then(data => {
-                // Convert array into {1:saveObj, 2:null, 3:null}
-                let mapped = { 1: null, 2: null, 3: null };
-                data.forEach(row => {
-                    mapped[row.save_slot] = row;
-                });
-                setSaves(mapped);
-            })
-            .catch(err => console.error(err));
-    }, []);
-
-    function handleSelect(slot) {
-        const existing = saves[slot];
-
-        if (mode === "new") {
-            if (existing) {
-                // later you add overwrite confirmation modal
-                if (!window.confirm("Overwrite this save file?")) return;
-                createNewSave(slot);
-            } else {
-                createNewSave(slot);
-            }
-        } else {
-            // continue game
-            if (!existing) return;
-
-            startGame(
-                existing.scene_id,
-                existing.line_index, 
-                existing.nickname,
-                existing.pronouns
-            );
-        }
-    }
-
-
-    function createNewSave(slot) {
-        fetch(`http://127.0.0.1:5000/api/saves/${USER_ID}/${slot}`, {
-            method: "PUT",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                scene_id: 1,
-                line_id: currentLine?.id,
-                nickname: newGameData.nickname,
-                pronouns: newGameData.pronouns
-            })
-        }).then(() => {
-            fetch("http://127.0.0.1:5000/api/saves")
-                .then(res => res.json())
-                .then(data => {
-                    let mapped = { 1: null, 2: null, 3: null };
-                    data.forEach(row => mapped[row.save_slot] = row);
-                    setSaves(mapped);
-                });
-            startGame(1, 0, newGameData.nickname, newGameData.pronouns);
-        });
-    }
-
-    function deleteSlot(slot) {
-        fetch(`http://127.0.0.1:5000/api/saves/${USER_ID}/${slot}`, {
-            method: "DELETE"
-        })
-        .then(() => {
-            setSaves(prev => ({
-                ...prev,
-                [slot]: null
-            }));
-        });
-    }
-
-  return (
-    <div className={styles.bodyBackground}>
-        <div className={`${styles.transitionGroup} ${!fadeLogo ? styles.fadeOut : ""}`}>
-            <img src={logo} alt="StarStruck" className={styles.imageLogo}/>
-
-            /* SAVE SLOTS TABLE *
-            <div style={{ marginTop: "120px", textAlign: "center", color: "white" }}>
-                <h2>Save Files</h2>
-
-                <table className={styles.tableDisplay}>
-                    <thead>
-                        <tr className={styles.tableRow}>
-                            <th>Slot </th>
-                            <th>Name </th>
-                            <th>Progress</th>
-                            <th>Last Saved</th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        {Object.entries(saves).map(([slot, data]) => (
-                            <tr key={slot} onClick={() => handleSelect(Number(slot))} style={{ borderBottom: "1px solid gray" }}>
-                                <td>{slot}</td>
-
-                                <td>
-                                    {data
-                                            ? data.nickname
-                                            : "—"}
-                                </td>
-
-                                <td>
-                                    {data ? `Scene ${data.scene_id}` : "Empty Slot"}
-                                </td>
-
-                                <td>
-                                    {data
-                                            ? new Date(data.save_time).toLocaleString()
-                                            : "—"}
-                                </td>
-
-                                <td>
-                                    {data ? (
-                                        <button className={styles.mainButtons}>
-                                            Load
-                                        </button>
-                                    ) : (
-                                        <span style={{ opacity: 0.4 }}>No Save</span>
-                                    )}
-                                </td>
-                                <td>
-                                    {data ? (
-                                        <button className={styles.mainButtons} onClick={() => deleteSlot(Number(slot))}>Delete</button>
-                                    ) : (
-                                        <span style={{ opacity: 0.4 }}>No Save</span>
-                                    )}
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </div>
-
-
-            <div className={styles.controllerSpace}>
-                <button className={styles.mainButtons} onClick={handleLaunch}>
-                    Back to Menu
-                </button>
-            </div>
-        </div>
-    </div>
-  );
-}
-*/

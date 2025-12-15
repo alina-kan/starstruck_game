@@ -41,8 +41,8 @@ function App() {
   }
 
   // startGame receives (sceneId, lineId, nickname, pronouns)
-  function startGame(sceneId, lineId, nickname, pronouns) {
-    setActiveGame({ sceneId, lineId, nickname, pronouns });
+  function startGame(sceneId, lineId, nickname, pronouns, affection) {
+    setActiveGame({ sceneId, lineId, nickname, pronouns, affection });
     setPage("Game");
   }
 
@@ -92,6 +92,7 @@ function App() {
           initialLineId={activeGame?.lineId ?? null}
           nickname={activeGame?.nickname ?? "Roxanne"}
           pronouns={activeGame?.pronouns ?? "she/her"}
+          initialAffection={activeGame?.affection ?? 0}
           goToStart={goToStart}
           goToSaveFiles={goToSaveFiles}
         />
@@ -101,79 +102,3 @@ function App() {
 }
 
 export default App;
-
-
-/*import { useState, useEffect } from "react";
-import Splash from './pages/Splash';
-import StartPage from './pages/StartPage';
-import Gallery from './pages/Gallery';
-import SaveFiles from './pages/SaveFiles';
-import NewGameModal from './pages/NewGameModal';
-import './App.css';
-
-function App() {
-  const [page, setPage] = useState("Splash");
-
-  function goToSplash() {
-    setPage("Splash")
-  }
-  
-  useEffect(() => {
-    const last = localStorage.getItem("lastPage");
-    if (last === "Gallery") setPage("Gallery");
-    else if (last === "Start") setPage("Splash");
-    else goToSplash();
-  }, []);
-
-  return (
-      <>
-        {page === "Splash" && (<Splash onFinish={() => setPage("StartPage")} />)}
-        {page === "StartPage" && (
-          <StartPage
-            goToNewModal={() => {
-              localStorage.setItem("lastPage", "NewGameModal");
-              setPage("NewGameModal");
-            }}
-            goToGallery={() => {
-              localStorage.setItem("lastPage", "Gallery");
-              setPage("Gallery");
-            }}
-            goToSaveFiles={() => {
-              localStorage.setItem("lastPage", "SaveFiles");
-              setPage("SaveFiles");
-            }}
-            goToStart={() => {
-              localStorage.setItem("lastPage", "Splash");
-              setPage("StartPage");
-            }}
-          />)}
-        {page === "Gallery" && (
-          <Gallery 
-            goToStart={() => {
-              localStorage.setItem("lastPage", "Gallery");
-              setPage("StartPage");
-            }}
-          />)}
-          {page === "NewGameModal" && (
-          <NewGameModal 
-            goToStart={() => {
-              localStorage.setItem("lastPage", "NewGame");
-              setPage("StartPage");
-            }}
-            goToSaveFiles={() => {
-              localStorage.setItem("lastPage", "SaveFiles");
-              setPage("SaveFiles");
-            }}
-          />)}
-        {page === "SaveFiles" && (
-          <SaveFiles 
-            goToStart={() => {
-              localStorage.setItem("lastPage", "SaveFiles");
-              setPage("StartPage");
-            }}
-          />)}
-      </>
-  );
-}
-
-export default App; */

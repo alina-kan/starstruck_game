@@ -15,7 +15,3 @@ export default function Splash({ onFinish }) {
     </div>
   );
 }
-
-/*
-<button onClick={handleLaunch}>Start Game</button> 
-*/
