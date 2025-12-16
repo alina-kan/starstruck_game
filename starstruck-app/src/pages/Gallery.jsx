@@ -51,8 +51,6 @@ export default function Gallery({ goToStart }) {
       <div className={`${styles.transitionGroup} ${!fadeLogo ? styles.fadeOut : ""}`}>
 
         <img src={logo} alt="StarStruck" className={styles.imageLogo} />
-
-        {/* --- CENTER ROW OF IMAGES --- */}
         <div className={styles.galleryPhotos}>
           {cgList.map((cg) => {
             const imgSrc = cg.unlocked
@@ -75,6 +73,7 @@ export default function Gallery({ goToStart }) {
           })}
         </div>
         
+        {/* pop up message when clicking locked image */}
         {lockedMessage && (
           <p className={styles.lockedPopup}>
             {lockedMessage}
@@ -89,7 +88,7 @@ export default function Gallery({ goToStart }) {
         </div>
       </div>
 
-      {/* --- MODAL POPUP --- */}
+      {/* viewing popup */}
       {selectedCG && (
         <div className={styles.modalOverlay} onClick={closeModal}>
           <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>

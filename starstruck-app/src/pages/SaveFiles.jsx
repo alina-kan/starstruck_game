@@ -10,11 +10,13 @@ export default function SaveFiles({ mode, newGameData, startGame, goToStart }) {
   const [fadeLogo, setFadeLogo] = useState(true);
   const [saves, setSaves] = useState({ 1: null, 2: null, 3: null });
 
+  //get all saves as soon as page loads
   useEffect(() => {
     fetchSaves();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  //fetch all the saves and map them correctly to the rows
   const fetchSaves = async () => {
     try {
       const res = await fetch('http://127.0.0.1:5000/api/saves');
@@ -27,6 +29,7 @@ export default function SaveFiles({ mode, newGameData, startGame, goToStart }) {
     }
   };
 
+  //go back to main menu
   const handleLaunch = () => {
     setFadeLogo(false);
     setTimeout(() => goToStart(), 300);
@@ -53,6 +56,7 @@ export default function SaveFiles({ mode, newGameData, startGame, goToStart }) {
     };
   };
 
+  //choose a save file
   const handleSelect = async (slot) => {
     const existing = saves[slot];
 
@@ -93,6 +97,7 @@ export default function SaveFiles({ mode, newGameData, startGame, goToStart }) {
     }
   };
 
+  //delete a save file if available
   const deleteSlot = async (slot) => {
     if (!saves[slot]) return;
     if (!window.confirm('Delete this save file?')) return;

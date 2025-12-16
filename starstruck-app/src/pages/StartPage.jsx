@@ -6,17 +6,15 @@ export default function StartPage({ goToNewModal, goToGallery, goToSaveFiles }) 
     const [fadeLogo, setFadeLogo] = useState(true);
     const [hasSaves, setHasSaves] = useState(false);
 
+    //go to new game if clicked
     function handleLaunchNewGame() {
         setFadeLogo(false);
         setTimeout(() => {
-            goToNewModal();   // <-- Navigate properly
+            goToNewModal(); 
         }, 1300);
     }
 
-    function handleNewGameComplete(data) {
-        goToSaveFiles("new", data);  // send mode + nickname/pronouns
-    }
-
+    //go to gallery if clicked
     function handleLaunchGallery() {
         setFadeLogo(false);    
         setTimeout(() => {
@@ -24,6 +22,7 @@ export default function StartPage({ goToNewModal, goToGallery, goToSaveFiles }) 
         }, 1300); 
     }
 
+    //go to save files if clicked to continue game
     function handleLaunchSave() {
         setFadeLogo(false);    
         setTimeout(() => {
@@ -31,6 +30,7 @@ export default function StartPage({ goToNewModal, goToGallery, goToSaveFiles }) 
         }, 1300); 
     }
 
+    //bring up exit option if clicked
     function handleExit() {
         if (window.opener) {
             window.close(); // works only if opened by your script
@@ -39,6 +39,7 @@ export default function StartPage({ goToNewModal, goToGallery, goToSaveFiles }) 
         }
     }
 
+    //check if any saves in table in order to make Continue button clickable
     useEffect(() => {
         fetch("http://127.0.0.1:5000/api/saves")
             .then(res => res.json())
@@ -51,11 +52,6 @@ export default function StartPage({ goToNewModal, goToGallery, goToSaveFiles }) 
     }, []);
 
   return (
-
-    //add function for launching the game
-    // - if creating a new game, ask for nickname and pronouns
-    // - if loading game, go to DB and get all possible saves (up to 3)
-
     <div className={styles.bodyBackground}>
         <div className={`${styles.transitionGroup} ${!fadeLogo ? styles.fadeOut : ""}`}>
             <img src={logo} alt="StarStruck" className={styles.imageLogo}/>

@@ -27,6 +27,7 @@ export default function GameEngine({
     const [currentSprite, setCurrentSprite] = useState(null);
     const [prevSprite, setPrevSprite] = useState(null);
 
+    //if we're starting the story from the beginning
     useEffect(() => {
         if (story[initialSceneId]) {
         setSceneId(initialSceneId);
@@ -50,11 +51,12 @@ export default function GameEngine({
         setCurrentLine(scene[lineIndex] || null);
     }, [scene, lineIndex]);
 
+    //hide choices buttons if no choices
     useEffect(() => {
         setShowChoices(false);
     }, [currentLine]);
 
-    // Handle music / sfx / transitions / choice modal
+    // Handle music / sfx / transitions / choice modal NOT IN EFFECT
     useEffect(() => {
         if (!currentLine) return;
         if (currentLine.music) audioEngine.playMusic(currentLine.music);
@@ -69,7 +71,7 @@ export default function GameEngine({
         setChoiceModal(currentLine.type === 'choice');
     }, [currentLine]);
 
-    // Keyboard for pause
+    // Keyboard for pause - Press "p", forgot to write in documentation
     useEffect(() => {
         const onKey = (e) => {
             if (e.key.toLowerCase() === 'p') setPauseModal(true);
@@ -79,6 +81,7 @@ export default function GameEngine({
         return () => window.removeEventListener('keydown', onKey);
     }, []);
 
+    //switch between sprites with fade transitions
     useEffect(() => {
         const next = currentLine?.sprite || null;
 
@@ -97,7 +100,7 @@ export default function GameEngine({
         }
     }, [currentLine?.sprite]);
 
-
+    //count affection points earned and save
     useEffect(() => {
         const rawScene = story[sceneId] || [];
 
@@ -111,6 +114,7 @@ export default function GameEngine({
         setScene(filtered);
     }, [sceneId, affection]);
 
+    //if an ending is reached, unlock the specified CG
     useEffect(() => {
         if (!currentLine?.ending) return;
 
@@ -120,7 +124,7 @@ export default function GameEngine({
         console.log("ENDING REACHED:", currentLine.ending.key);
     }, [currentLine]);
 
-
+    //process text to use chosen nickname and pronouns with grammatically correct verbage
     const processText = (t) => {
         if (!t) return '';
         let subj = nickname, obj = nickname, possessive = 'their';
@@ -142,6 +146,7 @@ export default function GameEngine({
         .replaceAll('{possessive}', possessive);
     };
 
+    //advance through the story by pressing on textbox
     const advance = () => {
         if (!currentLine) return;
 
@@ -162,22 +167,25 @@ export default function GameEngine({
             return;
         }
 
+        //after making choice, go to specified line
         if (currentLine.goto !== undefined){
             goToScene(currentLine.goto);
             return;
         }
 
+        //change line index to match 
         if (lineIndex + 1 < scene.length) {
             setLineIndex(lineIndex + 1);
             return;
         }
 
+        //move through scenes
         if (story[sceneId + 1]) {
             goToScene(sceneId + 1);
         }
     };
 
-
+    //allows to go to specific scenes
     const goToScene = (id, lineId = null) => {
         if (story[id]) { // scene number
             setSceneId(id);
@@ -198,6 +206,7 @@ export default function GameEngine({
         console.warn('Scene/line not found:', id);
     };
 
+    //look through selected choice, increase/decrease any affection, go to specific line
     const handleChoice = (choice) => {
         setChoiceModal(false);
 
@@ -210,6 +219,7 @@ export default function GameEngine({
         }
     };
 
+    //get all data for saving
     const getCurrentSaveData = () => {
         return {
             user_id: USER_ID,           
@@ -246,8 +256,9 @@ export default function GameEngine({
         } catch (err) {
             console.error("Save failed", err);
         }
-        };
+    };
 
+    //if ending reached, update table to "unlock" specific image
     const unlockEnding = async (ending) => {
         try {
             await fetch("http://127.0.0.1:5000/api/gallery/unlock", {
@@ -268,6 +279,7 @@ export default function GameEngine({
         }
     };
 
+    //pause modal lets you go back to Main Menu
     const handleBackToMenu = () => {
         setPauseModal(false);
         if (goToStart) goToStart();

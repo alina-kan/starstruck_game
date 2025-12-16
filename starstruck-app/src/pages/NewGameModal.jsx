@@ -7,6 +7,7 @@ export default function NewGameModal({ onFinish, goToStart, goToSaveFiles }) {
     const [pronouns, setPronouns] = useState("she/her");      // default
     const [fadeLogo, setFadeLogo] = useState(true);
 
+    //go back to menu if clicked
     function handleLaunch() {
         setFadeLogo(false);    
         setTimeout(() => {
@@ -14,6 +15,7 @@ export default function NewGameModal({ onFinish, goToStart, goToSaveFiles }) {
         }, 1300); 
     }
 
+    //submit all info to save files to create a new save for a new game
     function submit() {
         if (!nickname || !pronouns) return;
 
@@ -30,7 +32,7 @@ export default function NewGameModal({ onFinish, goToStart, goToSaveFiles }) {
                 <img src={logo} alt="StarStruck" className={styles.imageLogo} />
                 <div className={styles.mainForm}>
                     <h2 className={styles.h2Title}>New Game</h2>
-                    {/* NICKNAME */}
+                    {/* nickname */}
                     <input
                         className={styles.input}
                         placeholder="Nickname"
@@ -38,7 +40,7 @@ export default function NewGameModal({ onFinish, goToStart, goToSaveFiles }) {
                         onChange={e => setNickname(e.target.value)}
                     />
 
-                    {/* PRONOUN DROPDOWN */}
+                    {/* pronouns */}
                     <select
                         className={styles.pronouns}
                         value={pronouns}
